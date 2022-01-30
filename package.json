@@ -1,0 +1,20 @@
+{
+  "name": "geofighter-website",
+  "version": "1.0.0",
+  "description": "website for geo-fighter game",
+  "main": "server",
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "author": "Wilson V.",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15",
+    "react": "^17.0.2",
+    "react-router-dom": "^6.2.1",
+    "reactdom": "^2.0.0",
+    "redux": "^4.1.2",
+    "webpack": "^5.67.0"
+  }
+}
