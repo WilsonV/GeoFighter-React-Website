@@ -3,8 +3,8 @@ import React from "react";
 const Navbar = () => {
 
   return (
-    <div>
-      Navigation bar here!
+    <div className="nav">
+      <div className="nav-item">Home</div>
     </div>
   )
 }
