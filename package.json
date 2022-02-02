@@ -6,7 +6,10 @@
   "scripts": {
     "build": "webpack",
     "build-watch": "webpack --watch",
-    "start": "nodemon server"
+    "sass": "sass client/:public/",
+    "sass-watch": "sass --watch client/:public/",
+    "start": "nodemon server",
+    "lint": "eslint"
   },
   "author": "Wilson V.",
   "license": "ISC",
@@ -22,6 +25,7 @@
     "react-router-dom": "^6.2.1",
     "reactdom": "^2.0.0",
     "redux": "^4.1.2",
+    "sass": "^1.49.7",
     "webpack": "^5.67.0"
   },
   "devDependencies": {

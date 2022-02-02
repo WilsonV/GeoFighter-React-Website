@@ -1,13 +1,12 @@
-import React from "react";
+import React from 'react'
+import VideoIntro from './VideoIntro'
 
-
-const HomePage = ()=>{
-
+const HomePage = () => {
   return (
     <div>
-      <h1>Front Page!</h1>
+      <VideoIntro />
     </div>
   )
 }
 
-export default HomePage;
+export default HomePage
