@@ -89,4 +89,37 @@ body {
   transform: translateY(5px);
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position: fixed;
+  background: white;
+  width: 50%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+}
+.modal-main input {
+  width: 50%;
+  height: 40px;
+  margin: 5px;
+  font-size: 16px;
+}
+.modal-main .close {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 3%;
+  border: 1px solid black;
+}
+
 /*# sourceMappingURL=style.css.map */
