@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const morgan = require('morgan')
@@ -7,20 +8,24 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.use(express.static(path.join(__dirname, "..","public")))
+//routes auth
+app.use('/auth',require('./auth'))
 
 app.get("/", (req,res)=>{
   res.sendFile(path.join(__dirname, '..', 'public/index.html'))
 })
 
-app.get("/test",(req,res)=>{
-
-  res.send("<div><h1>Hi!</h1></div>")
-})
+app.use(express.static(path.join(__dirname, "..","public")))
 
 // sends index.html
 app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public/index.html'));
+})
+
+//Handle errors
+app.use((err,req,res)=>{
+  console.log(err)
+  res.status(err.status || 500).send(err.message || 'Internal Server Error')
 })
 
 module.exports = app;

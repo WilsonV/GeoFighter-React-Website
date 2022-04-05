@@ -2,10 +2,10 @@
 import React from 'react'
 import VideoIntro from './VideoIntro'
 
-const HomePage = () => {
+const HomePage = ({setRegisterLoginModal, showRegisterLoginModal}) => {
   return (
     <div>
-      <VideoIntro />
+      <VideoIntro setRegisterLoginModal={setRegisterLoginModal} showRegisterLoginModal={showRegisterLoginModal}/>
     </div>
   )
 }

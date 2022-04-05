@@ -1,12 +1,17 @@
-const app = require("./app")
+const app = require("./app");
+const {db} = require("./db");
 
 const PORT = 3000;
 
-const init = () =>{
+const init = async () =>{
 
-  app.listen(PORT, ()=>{
-    console.log(`Server Started on Port ${PORT}`)
-  })
+  try {
+    await db.sync()
+    app.listen(PORT, ()=>console.log(`Server Started on Port ${PORT}`))
+  } catch (error) {
+    console.error(error)
+  }
+
 
 }
 

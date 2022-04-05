@@ -86,6 +86,7 @@ body {
     font-weight: bold;
     color: black;
     transition: all .3s ease;
+    max-width: 100%;
 
     &:hover{
       background-color: red;
@@ -123,6 +124,10 @@ body {
     height: 40px;
     margin: 5px;
     font-size: 16px;
+
+    &:invalid{
+      border: red dotted 2px;
+    }
   }
 
   .close{
@@ -130,6 +135,7 @@ body {
     top: 0;
     right: 0;
     width: 3%;
+    min-width: 2rem;
     border: 1px solid black;
   }
 }
