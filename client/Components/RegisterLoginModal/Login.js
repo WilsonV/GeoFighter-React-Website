@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { authenticateLogin } from '../../store/auth'
 
-function Login({ setRegisterLoginModal, attemptLogin, error }) {
+function Login ({ setRegisterLoginModal, attemptLogin, isLoggedIn, error }) {
+  // const amILoggedIn = useSelector(state => {
+  //   console.log("Auth is",state.auth)
+  //   return !!state.auth.id})
+
+  useEffect(() => {
+    // console.log("is logged in",isLoggedIn(), "am i logged in", amILoggedIn)
+    if (isLoggedIn)setRegisterLoginModal(false, false)
+  }, [isLoggedIn])
+
   return (
     <>
       <form onSubmit={attemptLogin}>
@@ -19,20 +28,18 @@ function Login({ setRegisterLoginModal, attemptLogin, error }) {
 }
 
 const mapState = (state) => {
-
   return {
+    isLoggedIn: !!state.auth.id,
     error: state.auth.error
   }
 }
 const mapDispatch = (dispatch) => {
   return {
-    attemptLogin(evt) {
+    async attemptLogin (evt) {
       evt.preventDefault()
       const username = evt.target.username.value
       const password = evt.target.password.value
-      console.log("made it to dispatch")
-      dispatch(authenticateLogin(username, password))
-      console.log("finished dispatch")
+      await dispatch(authenticateLogin(username, password))
     }
   }
 }

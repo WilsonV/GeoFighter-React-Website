@@ -20,12 +20,12 @@ export const me = () => async dispatch => {
 
 export const authenticateLogin = (username,password) => async dispatch => {
   try {
-    console.log("made it in to authenticate")
+    //console.log("made it in to authenticate")
     const res = await axios.post('/auth/login',{username, password})
     window.localStorage.setItem(TOKEN, res.data.token)
     dispatch(me())
   } catch (error) {
-    return dispatch(setAuth({error: error}))
+    dispatch(setAuth({error: error}))
   }
 }
 
