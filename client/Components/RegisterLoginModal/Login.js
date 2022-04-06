@@ -10,14 +10,15 @@ function Login ({ setRegisterLoginModal, attemptLogin, isLoggedIn, error }) {
   useEffect(() => {
     // console.log("is logged in",isLoggedIn(), "am i logged in", amILoggedIn)
     if (isLoggedIn)setRegisterLoginModal(false, false)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn])
 
   return (
     <>
       <form onSubmit={attemptLogin}>
         {error && error.response && <div>{error.response.data}</div>}
-        <input type="text" name='username' maxLength={12} placeholder='Username'></input>
-        <input type="password" name='password' placeholder='Password'></input>
+        <input type="text" name='username' required maxLength={12} minLength={4} placeholder='Username'></input>
+        <input type="password" name='password' required minLength={4} placeholder='Password'></input>
         <div>
           <button onClick={() => setRegisterLoginModal(true, false)}>Register Instead</button>
           <button type='submit'>Login</button>

@@ -39,6 +39,11 @@ export const authenticateRegister = (username,email,password) => async dispatch 
   }
 }
 
+export const logout = () => {
+  window.localStorage.removeItem(TOKEN)
+  return setAuth({})
+}
+
 export default function(state={}, action){
   switch(action.type){
     case SET_AUTH:

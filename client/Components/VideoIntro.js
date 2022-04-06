@@ -12,7 +12,7 @@ const VideoIntro = ({ setRegisterLoginModal, showRegisterLoginModal }) => {
       <img className='center-logo' src="logo_big.png" />
       <div>
         <button>Download</button>
-        {isLoggedIn ?? <button onClick={() => setRegisterLoginModal(true, false)}>Register</button>}
+        {isLoggedIn || <button onClick={() => setRegisterLoginModal(true, false)}>Register</button>}
       </div>
       <h1>
         Download and Play For Free!
