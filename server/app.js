@@ -6,26 +6,26 @@ const path = require('path')
 
 app.use(morgan('dev'))
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 //routes auth
-app.use('/auth',require('./auth'))
+app.use('/auth', require('./auth'))
 
-app.get("/", (req,res)=>{
-  res.sendFile(path.join(__dirname, '..', 'public/index.html'))
-})
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'public/index.html'))
+// })
 
-app.use(express.static(path.join(__dirname, "..","public")))
+app.use(express.static(path.join(__dirname, "..", "public")))
 
-// sends index.html
+// sends index.html for non valid url
 app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public/index.html'));
 })
 
 //Handle errors
-app.use((err,req,res)=>{
-  console.log(err)
+app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message || 'Internal Server Error')
 })
+
 
 module.exports = app;
