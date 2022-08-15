@@ -30,6 +30,7 @@ body {
   color: gray;
   transition: 0.3s ease;
   float: left;
+  text-decoration: none;
 }
 .nav-item:hover {
   color: orange;
@@ -38,6 +39,14 @@ body {
 }
 .nav-item:last-child {
   border-right: none;
+}
+
+.nav-user {
+  font-weight: bold;
+  font-size: 24px;
+  color: gray;
+  float: left;
+  text-transform: uppercase;
 }
 
 .nav-right {

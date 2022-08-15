@@ -30,6 +30,7 @@ body {
   color: gray;
   transition: 0.3s ease;
   float: left;
+  text-decoration: none;
 
   &:hover {
     color: orange;
@@ -40,6 +41,15 @@ body {
   &:last-child {
     border-right: none;
   }
+
+}
+
+.nav-user{
+  font-weight: bold;
+  font-size: 24px;
+  color: gray;
+  float: left;
+  text-transform: uppercase;
 }
 
 .nav-right {

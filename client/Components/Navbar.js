@@ -1,22 +1,26 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
+import { Link } from "react-router-dom"
 import { logout, me } from '../store/auth'
 
-const Navbar = ({ setRegisterLoginModal, showRegisterLoginModal, isLoggedIn, logoutUser }) => {
+const Navbar = ({ setRegisterLoginModal, isLoggedIn, logoutUser, loggedInUsername }) => {
   const dispatch = useDispatch()
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(me())
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="nav">
-      <div className="nav-item">Home</div>
-      <div className="nav-item">Forum</div>
+      <Link to='/' className="nav-item">Home</Link>
+      <Link to='/forum' className="nav-item">Forum</Link>
       <div className='nav-right'>
         {isLoggedIn ?
-          <div className="nav-item" onClick={logoutUser}>Logout</div> :
+          <div>
+            <div className='nav-user'>{loggedInUsername},</div>
+            <div className="nav-item" onClick={logoutUser}>Logout</div>
+          </div> :
           <div className="nav-item" onClick={() => setRegisterLoginModal(true, true)}>Login</div>
         }
       </div>
@@ -27,15 +31,16 @@ const Navbar = ({ setRegisterLoginModal, showRegisterLoginModal, isLoggedIn, log
 
 const mapState = (state) => {
   return {
-    isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id,
+    loggedInUsername: state.auth.username
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    logoutUser(){
+    logoutUser() {
       dispatch(logout())
     }
   }
 }
-export default connect(mapState,mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(Navbar)
