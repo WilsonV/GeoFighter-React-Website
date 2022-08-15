@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: true }))
 
 //routes auth
 app.use('/auth', require('./auth'))
+app.use('/forum', require('./forum'))
 
 // app.get("/", (req, res) => {
 //   res.sendFile(path.join(__dirname, '..', 'public/index.html'))

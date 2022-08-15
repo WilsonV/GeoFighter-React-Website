@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS)
-console.log("Salt rounds is", SALT_ROUNDS)
 
 const Account = db.define('accounts', {
   username: {
@@ -29,6 +28,16 @@ const Account = db.define('accounts', {
       isEmail: true
     }
   },
+  isBanned: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  }
 }, {
   timestamps: false
 })
@@ -47,6 +56,17 @@ Account.prototype.correctPassword = function (candidtatePassword) {
 
 Account.prototype.generateToken = function () {
   return jwt.sign({ id: this.id }, process.env.JWT)
+}
+
+Account.prototype.checkIfBanned = async function () {
+  const id = this.id
+  if (!id) return true
+  const user = await Account.findOne({
+    attributes: ['isBanned'],
+    where: { id }
+  })
+  if (!user) throw Error("Unable to verify user data")
+  return user.isBanned
 }
 
 Account.authenticate = async function ({ username, password }) {
