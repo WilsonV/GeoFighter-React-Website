@@ -10,6 +10,11 @@ const Section = db.define("section", {
     validate: {
       notEmpty: true,
     }
+  },
+  description: {
+    type: Sequelize.STRING,
+    defaultValue: 'Description...',
+    allowNull: false
   }
 }, {
   timestamps: false

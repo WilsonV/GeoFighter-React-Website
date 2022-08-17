@@ -1,10 +1,29 @@
 import React from "react";
+import { connect } from "react-redux";
+import CategoryItem from "./CategoryItem";
 
-const Category = ({ name }) => {
-
+const Category = ({ categoryInfo }) => {
   return (
-    <div>
-      {name}
+    <div className="forum-category">
+      <div className="top">
+        {categoryInfo.name}
+      </div>
+      <div className="content">
+        {categoryInfo.sections.map(section => <CategoryItem key={section.id} categoryItemInfo={section} />)}
+      </div>
     </div>
   )
 }
+
+const mapState = (state) => {
+  return {
+
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+
+  }
+}
+export default connect(mapState, mapDispatch)(Category)

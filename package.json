@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack",
     "build-watch": "webpack --watch",
-    "sass": "sass client/:public/",
-    "sass-watch": "sass --watch client/:public/",
+    "sass": "sass client/scss/style.scss public/style.css",
+    "sass-watch": "sass --watch client/scss/style.scss public/style.css",
     "start": "nodemon server",
     "start:dev": "npm-run-all --parallel build-watch sass-watch start",
     "lint": "eslint"

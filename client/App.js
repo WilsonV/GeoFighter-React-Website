@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Navbar from './Components/Navbar'
-import { BrowserRouter as Router, Route, Routes, Switch } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import HomePage from './Components/HomePage'
 import Forum from './Components/Forum'
+import Section from './Components/Forum/Section'
 
 const App = () => {
   const [showRegisterLoginModal, setRegisterLoginModalVisibility] = useState({ show: false, login: false })
@@ -19,6 +20,7 @@ const App = () => {
         {/* <Route path="/*" element={<HomePage setRegisterLoginModal={setRegisterLoginModal} showRegisterLoginModal={showRegisterLoginModal} />} /> */}
 
         <Route exact path='/forum' element={<Forum />} />
+        <Route path='/forum/section/:sectionId' element={<Section />} />
       </Routes>
     </Router>
   )

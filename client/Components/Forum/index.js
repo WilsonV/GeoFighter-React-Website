@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { connect } from "react-redux"
 import { getForumCategories } from "../../store/forum"
+import Category from "./Category"
 
 const Forum = ({ forumCategories, getCategories }) => {
 
@@ -10,10 +11,9 @@ const Forum = ({ forumCategories, getCategories }) => {
 
   return (
 
-    <div>
-      {console.log("Categories", forumCategories)}
+    <div className="forum">
       Forum Page
-      {forumCategories.map(category => <div key={category.name}>Category: {category.name}</div>)}
+      {forumCategories.map(category => <Category categoryInfo={category} key={category.name} />)}
     </div>
   )
 }
@@ -28,7 +28,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     async getCategories() {
-      console.log("dispatching getForumCategories...")
       await dispatch(getForumCategories())
     }
   }
