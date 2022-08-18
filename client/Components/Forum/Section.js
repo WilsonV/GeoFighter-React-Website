@@ -1,19 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { useParams } from "react-router-dom"
+import { getSectionThreads } from "../../store/forum";
+import SectionItem from "./SectionItem";
 
-const Section = () => {
+const Section = ({ threads, loadThreads }) => {
   const { sectionId } = useParams()
 
-  console.log("loading id", sectionId)
+  useEffect(() => {
+    loadThreads(sectionId)
+  }, [])
 
   return (
     <div className="forum">
-      Section #{sectionId}
+      {console.log("Threads", threads)}
+      <div className="section-header">
+        <button className="topic-button">New Topic</button>
+      </div>
       <div className="forum-section">
-        Section
+        Threads in this Section:
+        {threads.map(thread => <SectionItem key={thread.id} sectionItemInfo={thread} />)}
       </div>
     </div>
   )
 }
 
-export default Section
+const mapState = (state) => {
+  return {
+    threads: state.forum.threads || []
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    async loadThreads(sectionId) {
+      await dispatch(getSectionThreads(sectionId))
+    }
+  }
+}
+export default connect(mapState, mapDispatch)(Section)
