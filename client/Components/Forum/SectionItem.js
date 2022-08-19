@@ -9,7 +9,9 @@ const SectionItem = ({ sectionItemInfo }) => {
   }
   return (
     <div className="section-item">
-      <div className="icon"></div>
+      <div className="icon">
+        <img src="../../postIcon.png" width={'100%'} />
+      </div>
       <div className="title">
         {sectionItemInfo.title}
         <div className="date">

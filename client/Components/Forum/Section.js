@@ -2,10 +2,19 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom"
 import { getSectionThreads } from "../../store/forum";
+import Navbar from "./Navbar";
 import SectionItem from "./SectionItem";
+import { useNavigationList, useNavigationUpdate } from "./NavigationContext";
 
-const Section = ({ threads, loadThreads }) => {
-  const { sectionId } = useParams()
+const Section = ({ threads, loadThreads, sectionId }) => {
+  // const updateNavList = useNavigationUpdate()
+  // const navigationList = useNavigationList()
+
+  // useEffect(() => {
+  //   updateNavList([...navigationList, { path: `/section/:${sectionId}`, title: `Section ${sectionId}` }])
+  // }, [])
+
+  // const { sectionId } = useParams()
 
   useEffect(() => {
     loadThreads(sectionId)

@@ -9,7 +9,7 @@ const Category = ({ categoryInfo }) => {
         {categoryInfo.name}
       </div>
       <div className="content">
-        {categoryInfo.sections.map(section => <CategoryItem key={section.id} categoryItemInfo={section} />)}
+        {categoryInfo.sections.map(section => <CategoryItem key={section.id} categoryItemInfo={{ ...section, categoryName: categoryInfo.name }} />)}
       </div>
     </div>
   )

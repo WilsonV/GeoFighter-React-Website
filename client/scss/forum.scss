@@ -1,6 +1,18 @@
 .forum{
- margin-top: 100px;
  text-align: center;
+}
+
+.forum-navbar{
+  margin-top: 5vh;
+  width: 100vw;
+  height: 5vh;
+  background-color: red;
+  position: sticky;
+  top: 0;
+
+  a{
+    text-decoration: none;
+  }
 }
 
 .forum-category {
