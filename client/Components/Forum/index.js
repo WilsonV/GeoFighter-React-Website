@@ -5,6 +5,7 @@ import Category from "./Category"
 import Navbar from "./Navbar"
 import { FORUM_PAGE, useNavigationPage } from "./NavigationContext"
 import Section from "./Section"
+import Thread from "./Thread"
 
 const Forum = ({ forumCategories, getCategories }) => {
   const currentPage = useNavigationPage()
@@ -25,6 +26,8 @@ const Forum = ({ forumCategories, getCategories }) => {
       {currentPage.name === FORUM_PAGE.SECTION &&
         <Section sectionId={currentPage.id} />
       }
+      {currentPage.name === FORUM_PAGE.THREAD &&
+        <Thread threadId={currentPage.id} />}
     </>
   )
 }

@@ -4,6 +4,7 @@ const { isRegisteredUser } = require('./gateKeepers')
 const { models: { Forum: { Category, Section, Thread } } } = require('../db')
 const sequelize = require('sequelize')
 const Account = require('../db/models/Account')
+const ThreadPost = require('../db/models/Forum/ThreadPost')
 
 module.exports = router
 
@@ -35,6 +36,23 @@ router.get('/threads', isRegisteredUser, async (req, res, next) => {
       }
     })
     res.send(threads)
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+})
+
+router.get('/posts', isRegisteredUser, async (req, res, next) => {
+  try {
+    const threadPosts = await ThreadPost.findAll({
+      where: { threadId: req.query.threadId },
+      include: {
+        model: Account,
+        as: 'author',
+        attributes: ['username']
+      }
+    })
+    res.send(threadPosts)
   } catch (error) {
     console.log(error)
     next(error)

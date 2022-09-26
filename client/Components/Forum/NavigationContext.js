@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 
 export const FORUM_PAGE = {
   HOME: 'HOME',
-  SECTION: 'SECTION'
+  SECTION: 'SECTION',
+  THREAD: 'THREAD'
 }
 
 const NavigationContext = React.createContext()

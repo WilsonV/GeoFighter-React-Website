@@ -3,6 +3,7 @@ const Account = require('./models/Account')
 const Category = require('./models/Forum/Category')
 const Section = require('./models/Forum/Section')
 const Thread = require('./models/Forum/Thread')
+const ThreadPost = require('./models/Forum/ThreadPost')
 
 Category.hasMany(Section)
 Section.belongsTo(Category)
@@ -11,6 +12,11 @@ Account.hasMany(Thread)
 Thread.belongsTo(Account, { foreignKey: 'accountId', as: 'author' })
 Thread.belongsTo(Section)
 
+ThreadPost.belongsTo(Account, { foreignKey: 'accountId', as: 'author' })
+Account.hasMany(ThreadPost)
+ThreadPost.belongsTo(Thread)
+Thread.hasMany(ThreadPost)
+
 module.exports = {
   db,
   models: {
@@ -18,7 +24,8 @@ module.exports = {
     Forum: {
       Category,
       Section,
-      Thread
+      Thread,
+      ThreadPost
     }
   },
 }

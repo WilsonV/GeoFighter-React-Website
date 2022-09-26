@@ -3,17 +3,49 @@
 }
 
 .forum-navbar{
+  margin: auto;
   margin-top: 5vh;
-  width: 100vw;
+  margin-bottom: 1vh;
+  width: 80vw;
   height: 5vh;
-  background-color: red;
+  background-color: gray;
   position: sticky;
   top: 0;
-
+  display: flex;
+  align-items: center;
+  img{
+    border: 2px black solid;
+    height: 50%;
+    margin: 2px;
+  }
   a{
     text-decoration: none;
+    color: white;
+    margin: 2px;
+    text-transform: uppercase;
+    animation: SlideFadeIn 2s;
+
+    &:hover{
+      cursor: pointer;
+    }
   }
+
+  @keyframes SlideFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(0%);
+    }
+    100% {
+      opacity: 1;
+
+    }
+  }
+
 }
+
 
 .forum-category {
   width: 80vw;
@@ -71,7 +103,11 @@
       &:hover{
       color: red;
       cursor: pointer;
+      }
     }
+
+    .description{
+      color: gray;
     }
 
   }
@@ -119,7 +155,6 @@
   min-width: 100px;
   margin: auto;
 
-
   .section-item{
     display: flex;
     flex-direction: row;
@@ -145,6 +180,15 @@
 
       .date{
         color: gray;
+      }
+    }
+
+    a{
+      color: black;
+      text-decoration: none;
+      &:hover{
+      color: red;
+      cursor: pointer;
       }
     }
 

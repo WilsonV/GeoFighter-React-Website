@@ -1,22 +1,30 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useNavigationList } from "./NavigationContext";
+import { FORUM_PAGE, useNavigationList, useNavigationPageUpdate, useNavigationUpdate } from "./NavigationContext";
 
 const Navbar = () => {
   const navigationList = useNavigationList()
+  const updateNavList = useNavigationUpdate()
+  const changeForumPage = useNavigationPageUpdate()
 
-  // const updateNavList = useNavigationUpdate()
-  // useEffect(() => {
-  //   updateNavList([...navigationList, { path: '/', title: 'Main Home' }])
-  // }, [])
+  function handleHomeButtonClick() {
+    console.log("Home clicked")
+    updateNavList([])
+    changeForumPage({ name: FORUM_PAGE.HOME, id: 0 })
+  }
 
+  function handlePathButtonClick(nav, navIndex) {
+    updateNavList(navigationList.filter((navItem, index) => index <= navIndex))
+    changeForumPage({ name: nav.name, id: nav.id })
+  }
   return (
     <div className="forum-navbar">
-      <Link to='/forum'>
-        <img src="../../home.png" /> Home
-      </Link>
-      {navigationList.map(nav => {
-        return <Link key={nav.title} to={nav.path}> {' > '} {nav.title}</Link>
+      <img src="../../home.png" />
+      <a onClick={handleHomeButtonClick}>
+        Home
+      </a>
+      {navigationList.map((nav, index) => {
+        return <a key={nav.title} onClick={() => handlePathButtonClick(nav, index)}> {' > '} {nav.title} </a>
       })}
     </div>
   )
