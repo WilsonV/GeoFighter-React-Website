@@ -2,11 +2,13 @@ import axios from 'axios'
 import { TOKEN } from './auth'
 const SET_CATEGORIES = 'SET_CATEGORIES'
 const SET_THREADS = 'SET_THREADS'
+const SET_CURRENTTHREAD = 'SET_CURRENTTHREAD'
 const SET_THREADPOST = 'SET_THREADPOST'
 
 const setCategories = categories => ({ type: SET_CATEGORIES, categories })
 const setThreads = threads => ({ type: SET_THREADS, threads })
 const setThreadPost = threadPosts => ({ type: SET_THREADPOST, threadPosts })
+export const setCurrentThread = thread => ({ type: SET_CURRENTTHREAD, thread })
 
 export const getForumCategories = () => async dispatch => {
   try {
@@ -27,7 +29,6 @@ export const getForumCategories = () => async dispatch => {
 
 export const getSectionThreads = (sectionId) => async dispatch => {
   try {
-    console.log("loading section", sectionId)
     const token = window.localStorage.getItem(TOKEN)
     if (!token) throw "Un-authorized Access"
     const res = await axios.get('/forum/threads', {
@@ -73,6 +74,8 @@ export default function (state = {}, action) {
       return { ...state, threads: action.threads }
     case SET_THREADPOST:
       return { ...state, threadPosts: action.threadPosts }
+    case SET_CURRENTTHREAD:
+      return { ...state, currentThread: action.thread }
     default:
       return state
   }

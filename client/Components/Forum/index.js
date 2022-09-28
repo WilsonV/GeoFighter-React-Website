@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react"
 import { connect } from "react-redux"
 import { getForumCategories } from "../../store/forum"
 import Category from "./Category"
+import Footer from "./Footer"
 import Navbar from "./Navbar"
 import { FORUM_PAGE, useNavigationPage } from "./NavigationContext"
 import Section from "./Section"
@@ -28,6 +29,7 @@ const Forum = ({ forumCategories, getCategories }) => {
       }
       {currentPage.name === FORUM_PAGE.THREAD &&
         <Thread threadId={currentPage.id} />}
+      <Footer />
     </>
   )
 }
