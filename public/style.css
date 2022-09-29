@@ -192,7 +192,7 @@
 
 .forum-post {
   width: 80vw;
-  height: 200px;
+  min-height: 200px;
   background-color: white;
   padding-bottom: 2%;
   border-bottom: 2px black solid;
@@ -221,10 +221,51 @@
 }
 .forum-post .body {
   width: 90%;
-  height: 85%;
   background-color: white;
   text-align: left;
   font-size: large;
+}
+.forum-post .body code,
+.forum-post .body .code,
+.forum-post .body pre {
+  font-family: "Source Code Pro";
+  background: #292929;
+  color: #fafafa;
+  font-size: 16px;
+  padding: 0;
+  padding: 10px;
+}
+.forum-post .body code:before,
+.forum-post .body .code:before,
+.forum-post .body pre:before {
+  display: block;
+  width: 100%;
+  margin-left: -3px;
+  margin-top: -3px;
+  padding: 3px;
+  text-transform: uppercase;
+  content: attr("scss");
+  background: #9baecf;
+}
+.forum-post .body code .o,
+.forum-post .body .code .o,
+.forum-post .body pre .o {
+  color: orange;
+}
+.forum-post .body code .w,
+.forum-post .body .code .w,
+.forum-post .body pre .w {
+  color: white;
+}
+.forum-post .body img {
+  max-height: 25%;
+  max-width: 100%;
+  transition: transform 0.5s ease;
+}
+.forum-post .body img:hover {
+  max-height: 100%;
+  transform: scale(1.5);
+  border: 4px black solid;
 }
 
 .reply-area {

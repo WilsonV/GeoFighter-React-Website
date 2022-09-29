@@ -82,9 +82,21 @@ Account.authenticate = async function ({ username, password }) {
   return user.generateToken()
 }
 
+Account.getIdByToken = async function (token) {
+  try {
+    const { id } = jwt.verify(token, process.env.JWT);
+    if (!id) throw "bad token"
+    return id
+  } catch (err) {
+    console.log(err)
+    const error = Error('bad token');
+    error.status = 401;
+    throw error;
+  }
+}
 Account.findByToken = async function (token) {
   try {
-    const { id } = await jwt.verify(token, process.env.JWT);
+    const { id } = jwt.verify(token, process.env.JWT);
     console.log("extracted id", id)
     const user = await Account.findByPk(id, { attributes: ['id', 'username'] });
     if (!user) {

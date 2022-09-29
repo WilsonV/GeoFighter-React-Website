@@ -15,10 +15,10 @@ const Section = ({ threads, loadThreads, sectionId }) => {
         <button className="topic-button">New Topic</button>
       </div>
       <div className="forum-section">
-        <p>Threads in this Section:</p>
+        {threads.length ? <p>Threads</p> : <p>No Threads In This Section</p>}
         {threads.map(thread => <SectionItem key={thread.id} thread={thread} />)}
       </div>
-    </div>
+    </div >
   )
 }
 

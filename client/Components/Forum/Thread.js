@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getThreadPosts } from "../../store/forum";
+import { getThreadPosts, setThreadPost } from "../../store/forum";
 import Reply from "./Reply";
 import ThreadPost from "./ThreadPost"
 
-const Thread = ({ loadThreadPosts, thread, threadId, threadPosts }) => {
+const Thread = ({ loadThreadPosts, thread, threadId, threadPosts, cleanThreads }) => {
 
   useEffect(() => {
-
     loadThreadPosts(threadId)
+
+    return () => {
+      cleanThreads()
+    }
   }, [])
   return (
     <div className="forum">
@@ -21,7 +24,7 @@ const Thread = ({ loadThreadPosts, thread, threadId, threadPosts }) => {
       <div className="forum-section">
         {threadPosts.map(post => <ThreadPost key={post.id} postInfo={post} />)}
       </div>
-      <Reply />
+      <Reply threadId={threadId} />
     </div>)
 }
 
@@ -36,6 +39,9 @@ const mapDispatch = (dispatch) => {
   return {
     async loadThreadPosts(threadId) {
       await dispatch(getThreadPosts(threadId))
+    },
+    async cleanThreads() {
+      await dispatch(setThreadPost([]))
     }
   }
 }

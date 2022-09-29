@@ -48,4 +48,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(() => { }, mapDispatch)(SectionItem)
+export default connect(null, mapDispatch)(SectionItem)

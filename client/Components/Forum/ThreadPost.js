@@ -1,5 +1,5 @@
 import React from "react";
-
+import parser from "bbcode-to-react";
 const ThreadPost = ({ postInfo }) => {
 
   return (
@@ -13,7 +13,7 @@ const ThreadPost = ({ postInfo }) => {
       </div>
 
       <div className="body">
-        {postInfo.body}
+        {parser.toReact(postInfo.body)}
       </div>
     </div>
   )

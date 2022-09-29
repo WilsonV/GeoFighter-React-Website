@@ -7,7 +7,7 @@ const SET_THREADPOST = 'SET_THREADPOST'
 
 const setCategories = categories => ({ type: SET_CATEGORIES, categories })
 const setThreads = threads => ({ type: SET_THREADS, threads })
-const setThreadPost = threadPosts => ({ type: SET_THREADPOST, threadPosts })
+export const setThreadPost = threadPosts => ({ type: SET_THREADPOST, threadPosts })
 export const setCurrentThread = thread => ({ type: SET_CURRENTTHREAD, thread })
 
 export const getForumCategories = () => async dispatch => {
@@ -63,6 +63,22 @@ export const getThreadPosts = (threadId) => async dispatch => {
   } catch (error) {
     console.log("Failed to load thread posts")
     dispatch(setThreadPost([]))
+  }
+}
+
+export const postReply = (threadId, message) => async dispatch => {
+  try {
+    const token = window.localStorage.getItem(TOKEN)
+    if (!token) throw "Un-authorized Access"
+    console.log("sent data to server")
+    const res = await axios.post('/forum/thread', { threadId, message }, {
+      headers: {
+        authorization: token
+      }
+    })
+    console.log("got an answer back")
+  } catch (error) {
+    console.log("Failed to post reply")
   }
 }
 

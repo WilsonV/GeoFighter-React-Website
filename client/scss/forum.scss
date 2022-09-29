@@ -223,7 +223,7 @@
 
 .forum-post{
   width: 80vw;
-  height: 200px;
+  min-height: 200px;
   background-color: white;
   padding-bottom: 2%;
   border-bottom: 2px black solid;
@@ -255,13 +255,54 @@
   }
 
 
+  $lightGray: #fafafa;
+  $medBlue: #9baecf;
+  $char: #292929;
 
   .body{
     width: 90%;
-    height: 85%;
     background-color: white;
     text-align: left;
     font-size: large;
+
+    code,
+    .code,
+    pre {
+      font-family: 'Source Code Pro';
+      background: $char;
+      color: $lightGray;
+      font-size: 16px;
+      padding: 0;
+      padding: 10px;
+      &:before {
+        display: block;
+        width: calc(100%);
+        margin-left: -3px;
+        margin-top: -3px;
+        padding: 3px;
+        text-transform: uppercase;
+        content: attr('scss');
+        background: $medBlue;
+      }
+      .o {
+        color: orange;
+      }
+      .w {
+        color: white;
+      }
+    }
+
+    img{
+      max-height: 25%;
+      max-width: 100%;
+      transition: transform 0.5s ease;
+
+      &:hover{
+        max-height: 100%;
+        transform: scale(1.5);
+        border: 4px black solid;
+      }
+    }
   }
 }
 
