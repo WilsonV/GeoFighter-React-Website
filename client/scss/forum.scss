@@ -142,6 +142,27 @@
   .title{
     text-align: left;
     text-transform: uppercase;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+
+    .pageButtons{
+    background-color: blue;
+    margin-left: 10px;
+    width: 15px;
+    height: 20px;
+    background-color: lightgray;
+    color:white;
+    border: 1px black solid;
+    font-size: x-large;
+    text-align: center;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
   }
 
   .topic-button{
@@ -221,15 +242,15 @@
   }
 }
 
+
+
+
 .forum-post{
   width: 80vw;
   min-height: 200px;
   background-color: white;
   padding-bottom: 2%;
   border-bottom: 2px black solid;
-  display: flex;
-  flex-direction: row;
-  flex-flow: row wrap;
 
   .title{
     min-width: 100%;
@@ -239,8 +260,12 @@
     margin-bottom: 0px;
     background-color: cadetblue;
     color: white;
+    display: flex;
+    flex-direction: row;
+
 
   }
+
 
   .author{
     width: 10%;

@@ -105,9 +105,9 @@ body {
       color: white;
     }
 
-    &:active{
-      transform: translateY(5px);
-    }
+    // &:active{
+    //   transform: translateY(5px);
+    // }
   }
 
 }
@@ -152,3 +152,10 @@ body {
   }
 }
 
+button{
+  transition: transform .25s ease;
+  &:active{
+
+    transform: translateY(5px);
+  }
+}

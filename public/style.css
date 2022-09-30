@@ -124,6 +124,25 @@
 .section-header .title {
   text-align: left;
   text-transform: uppercase;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+}
+.section-header .title .pageButtons {
+  background-color: blue;
+  margin-left: 10px;
+  width: 15px;
+  height: 20px;
+  background-color: lightgray;
+  color: white;
+  border: 1px black solid;
+  font-size: x-large;
+  text-align: center;
+}
+.section-header .title .pageButtons:hover {
+  cursor: pointer;
 }
 .section-header .topic-button {
   width: 120px;
@@ -196,9 +215,6 @@
   background-color: white;
   padding-bottom: 2%;
   border-bottom: 2px black solid;
-  display: flex;
-  flex-direction: row;
-  flex-flow: row wrap;
 }
 .forum-post .title {
   min-width: 100%;
@@ -208,6 +224,8 @@
   margin-bottom: 0px;
   background-color: cadetblue;
   color: white;
+  display: flex;
+  flex-direction: row;
 }
 .forum-post .author {
   width: 10%;
@@ -408,9 +426,6 @@ body {
   background-color: red;
   color: white;
 }
-.section button:active {
-  transform: translateY(5px);
-}
 
 .modal {
   position: fixed;
@@ -447,6 +462,13 @@ body {
   width: 3%;
   min-width: 2rem;
   border: 1px solid black;
+}
+
+button {
+  transition: transform 0.25s ease;
+}
+button:active {
+  transform: translateY(5px);
 }
 
 /*# sourceMappingURL=style.css.map */
