@@ -3,7 +3,8 @@ import React, { useContext, useState } from "react";
 export const FORUM_PAGE = {
   HOME: 'HOME',
   SECTION: 'SECTION',
-  THREAD: 'THREAD'
+  THREAD: 'THREAD',
+  NEWTOPIC: 'NEWTOPIC'
 }
 
 const NavigationContext = React.createContext()

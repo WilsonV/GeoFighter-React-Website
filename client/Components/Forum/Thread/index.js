@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { getThreadPosts, setThreadPost } from "../../store/forum";
-import Reply from "./Reply";
+import { getThreadPosts, setThreadPost } from "../../../store/forum";
+import Reply from "../Reply";
 import ThreadPost from "./ThreadPost"
 
 const Thread = ({ loadThreadPosts, thread, threadId, threadPosts, cleanThreads }) => {
 
+  const [loading, setLoading] = useState(true)
+
   const [page, setPage] = useState(1)
 
-  useEffect(() => {
-    loadThreadPosts(threadId)
+  useEffect(async () => {
+    await loadThreadPosts(threadId)
+
+    setLoading(false)
+    document.getElementById("#forum-div").classList.remove('collapsed')
 
     return () => {
       cleanThreads()
@@ -22,9 +27,9 @@ const Thread = ({ loadThreadPosts, thread, threadId, threadPosts, cleanThreads }
 
   function changeViewingPage(evt) {
     evt.preventDefault()
-    console.log("page button val", parseInt(evt.target.value))
     setPage(parseInt(evt.target.value))
   }
+
   function pageNumberButtons() {
     const divs = []
     for (let i = 0; i < threadPosts.length / 10; i++) {
@@ -32,23 +37,27 @@ const Thread = ({ loadThreadPosts, thread, threadId, threadPosts, cleanThreads }
     }
     return divs
   }
+
   return (
-    <div className="forum">
-      <div className="section-header">
-        <div className="title">
-          <p>{thread.title}</p>
-          {threadPosts.length > 10 ?
-            pageNumberButtons()
-            : null}
+    <div id="#forum-div" className="forum collapsed">
+      {loading ? <div>Loading....</div> : <>
+
+        <div className="section-header">
+          <div className="title">
+            <p>{thread.title}</p>
+            {threadPosts.length > 10 ?
+              pageNumberButtons()
+              : null}
+          </div>
         </div>
-        <button className="topic-button">Reply</button>
-      </div>
-      <div className="forum-section">
-        {threadPosts
-          .filter((post, index) => index < (page * 10) && index > (page - 1) * 10)
-          .map(post => <ThreadPost key={post.id} postInfo={post} />)}
-      </div>
-      <Reply threadId={threadId} />
+
+        <div className="forum-section">
+          {threadPosts
+            .filter((post, index) => index < (page * 10) && index >= (page - 1) * 10)
+            .map(post => <ThreadPost key={post.id} postInfo={post} />)}
+        </div>
+        <Reply threadId={threadId} />
+      </>}
     </div>)
 }
 

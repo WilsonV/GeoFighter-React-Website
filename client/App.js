@@ -3,7 +3,6 @@ import Navbar from './Components/Navbar'
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import HomePage from './Components/HomePage'
 import Forum from './Components/Forum'
-import Section from './Components/Forum/Section'
 import NavigationContext from './Components/Forum/NavigationContext'
 
 const App = () => {
@@ -18,7 +17,6 @@ const App = () => {
       <Navbar setRegisterLoginModal={setRegisterLoginModal} />
       <Routes>
         <Route exact path="/" element={<HomePage setRegisterLoginModal={setRegisterLoginModal} showRegisterLoginModal={showRegisterLoginModal} />} />
-        {/* <Route path="/*" element={<HomePage setRegisterLoginModal={setRegisterLoginModal} showRegisterLoginModal={showRegisterLoginModal} />} /> */}
 
         <Route exact path='/forum' element={
           <NavigationContext>
@@ -26,7 +24,6 @@ const App = () => {
           </NavigationContext>
 
         } />
-        {/* <Route path='/forum/section/:sectionId' element={<Section />} /> */}
       </Routes>
     </Router>
   )

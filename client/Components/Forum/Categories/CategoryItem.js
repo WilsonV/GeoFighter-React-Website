@@ -1,5 +1,5 @@
 import React from "react";
-import { FORUM_PAGE, useNavigationList, useNavigationPageUpdate, useNavigationUpdate } from "./NavigationContext";
+import { FORUM_PAGE, useNavigationList, useNavigationPageUpdate, useNavigationUpdate } from "../NavigationContext";
 
 const CategoryItem = ({ categoryItemInfo }) => {
 

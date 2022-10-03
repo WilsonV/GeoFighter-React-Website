@@ -5,6 +5,13 @@
 
 .forum{
  text-align: center;
+ overflow: hidden;
+ transition: max-height 2s ease;
+ max-height: 4000px;
+}
+
+.collapsed{
+  max-height: 30px;
 }
 
 .forum-navbar-top{
@@ -59,8 +66,9 @@
 
 .full-width{
   position: sticky;
-  width: 100vw;
+  width: 100%;
   border-bottom: 2px white solid;
+  overflow: hidden;
 }
 
 
@@ -168,7 +176,7 @@
     background-color: lightgray;
     color:white;
     border: 1px black solid;
-    font-size: x-large;
+    font-size: large;
     text-align: center;
 
       &:hover{
@@ -347,17 +355,33 @@
 .reply-area{
   margin: auto;
   padding-top: 20px;
-  width: 80%;
+  width: 80vw;
+
+  .title{
+    width: 100%;
+    height: 30px;
+    font-size: large;
+
+    &:focus{
+      outline-color: cadetblue;
+    }
+  }
 
   textarea{
     width: 100%;
     resize: vertical;
     font-size: large;
+    min-height: 200px;
+    margin: 10px 0;
+
+    &:focus{
+      outline-color: cadetblue;
+    }
   }
 
 
   .post-button{
-    width: 120px;
+    width: 50%;
     height: 40px;
     margin: 0 10px;
     background-color: cadetblue;
@@ -391,5 +415,49 @@
 
     display: flex;
     align-items: center;
+  }
+}
+
+
+.new-topic{
+  width: 80vw;
+  margin: auto;
+  text-align: center;
+
+  .title{
+    width: 100%;
+    height: 30px;
+    font-size: large;
+
+    &:focus{
+      outline-color: cadetblue;
+    }
+  }
+
+  textarea{
+    margin: 10px 0;
+    width: 100%;
+    min-height: 300px;
+    resize: vertical;
+    font-size: large;
+
+    &:focus{
+      outline-color: cadetblue;
+    }
+  }
+
+  .post-button{
+    width: 50%;
+    height: 40px;
+    margin: 0 10px;
+    background-color: cadetblue;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+
+    &:hover{
+      cursor: pointer;
+    }
+
   }
 }

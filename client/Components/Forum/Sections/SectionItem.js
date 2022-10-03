@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setCurrentThread } from "../../store/forum";
-import { FORUM_PAGE, useNavigationList, useNavigationPageUpdate, useNavigationUpdate } from "./NavigationContext";
+import { setCurrentThread } from "../../../store/forum";
+import { FORUM_PAGE, useNavigationList, useNavigationPageUpdate, useNavigationUpdate } from "../NavigationContext";
 
 const SectionItem = ({ thread, setAsCurrentThread }) => {
   const navigationList = useNavigationList()

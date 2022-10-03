@@ -66,12 +66,12 @@ export const getThreadPosts = (threadId) => async dispatch => {
   }
 }
 
-export const postReply = (threadId, message) => async dispatch => {
+export const postReply = (threadId, { title, message }) => async dispatch => {
   try {
     const token = window.localStorage.getItem(TOKEN)
     if (!token) throw "Un-authorized Access"
     console.log("sent data to server")
-    const res = await axios.post('/forum/thread', { threadId, message }, {
+    const res = await axios.post('/forum/reply', { threadId, title, message }, {
       headers: {
         authorization: token
       }
@@ -79,6 +79,22 @@ export const postReply = (threadId, message) => async dispatch => {
     console.log("got an answer back")
   } catch (error) {
     console.log("Failed to post reply")
+  }
+}
+
+export const postNewTopic = (sectionId, { title, message }) => async dispatch => {
+  try {
+    const token = window.localStorage.getItem(TOKEN)
+    if (!token) throw "Un-authorized Access"
+    const res = await axios.post('/forum/thread', { sectionId, title, message }, {
+      headers: {
+        authorization: token
+      }
+    })
+    await dispatch(setCurrentThread(res.data))
+    return res.data
+  } catch (error) {
+    console.log("Failed to post new topic")
   }
 }
 

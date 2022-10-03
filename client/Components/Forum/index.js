@@ -1,51 +1,34 @@
-import React, { useContext, useEffect } from "react"
-import { connect } from "react-redux"
-import { getForumCategories } from "../../store/forum"
-import Category from "./Category"
+import React from "react"
+import ShowCategories from "./Categories"
 import Footer from "./Footer"
 import Navbar from "./Navbar"
 import { FORUM_PAGE, useNavigationPage } from "./NavigationContext"
-import Section from "./Section"
+import NewTopic from "./NewTopic"
+import Section from "./Sections"
 import Thread from "./Thread"
 
-const Forum = ({ forumCategories, getCategories }) => {
-  const currentPage = useNavigationPage()
+const Forum = () => {
 
-  console.log("Forum pages are", FORUM_PAGE)
-  console.log("Current Page", currentPage)
-  useEffect(() => {
-    getCategories()
-  }, [])
+  const currentPage = useNavigationPage()
 
   return (
     <>
       <Navbar />
       {currentPage.name === FORUM_PAGE.HOME &&
-        <div className="forum">
-          {forumCategories.map(category => <Category categoryInfo={category} key={category.name} />)}
-        </div>}
+        <ShowCategories />
+      }
       {currentPage.name === FORUM_PAGE.SECTION &&
         <Section sectionId={currentPage.id} />
       }
       {currentPage.name === FORUM_PAGE.THREAD &&
         <Thread threadId={currentPage.id} />}
+      {currentPage.name === FORUM_PAGE.NEWTOPIC &&
+        <NewTopic sectionId={currentPage.id} />
+      }
       <Footer />
     </>
   )
 }
 
-const mapState = (state) => {
-  console.log(state)
-  return {
-    forumCategories: state.forum.categories || []
-  }
-}
 
-const mapDispatch = (dispatch) => {
-  return {
-    async getCategories() {
-      await dispatch(getForumCategories())
-    }
-  }
-}
-export default connect(mapState, mapDispatch)(Forum)
+export default Forum

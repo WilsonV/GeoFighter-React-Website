@@ -4,23 +4,24 @@ import { getThreadPosts, postReply } from "../../../store/forum";
 
 const Reply = ({ threadId, addReply }) => {
 
-  const [replyMessage, setReplyMessage] = useState("")
+  const [replyMessage, setReplyMessage] = useState({ title: '', message: '' })
 
   function handleTextChange(evt) {
-    setReplyMessage(evt.target.value)
+    setReplyMessage({ ...replyMessage, [evt.target.name]: evt.target.value })
   }
 
   function replyToThread(evt) {
+    evt.preventDefault()
     addReply(threadId, replyMessage)
-    setReplyMessage("")
+    setReplyMessage({ title: '', message: '' })
   }
 
-  return (<div className="reply-area">
-    <textarea rows={10} placeholder={"Reply goes here"} value={replyMessage} onChange={handleTextChange}>
+  return (<form className="reply-area" onSubmit={replyToThread}>
+    <input required className="title" placeholder={"Title..."} onChange={(e) => handleTextChange(e)} name='title' value={replyMessage.title} />
+    <textarea required rows={10} placeholder={"Reply goes here"} value={replyMessage.message} onChange={handleTextChange} name='message' />
 
-    </textarea>
-    <button className="post-button" onClick={replyToThread}>Post Reply</button>
-  </div>)
+    <button type="submit" className="post-button" >Post Reply</button>
+  </form>)
 }
 
 const mapDispatch = (dispatch) => {

@@ -59,17 +59,43 @@ router.get('/posts', isRegisteredUser, async (req, res, next) => {
   }
 })
 
-
 router.post('/thread', isRegisteredUser, async (req, res, next) => {
   try {
-    const userPostingId = await Account.getIdByToken(req.headers.authorization)
+    const { sectionId, title, message: body } = req.body
+
+    const accountId = await Account.getIdByToken(req.headers.authorization)
+    const newThread = await Thread.create({
+      title,
+      sectionId,
+      accountId,
+      date: Date.now()
+    })
+    console.log("New Thread ID", newThread.id)
+    const firstPost = await ThreadPost.create({
+      title,
+      body,
+      threadId: newThread.id,
+      accountId,
+      date: Date.now()
+    })
+    res.status(200).send(newThread)
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+})
+
+router.post('/reply', isRegisteredUser, async (req, res, next) => {
+  try {
+    const { threadId, title, message: body } = req.body
+    const accountId = await Account.getIdByToken(req.headers.authorization)
 
     console.log("posting in ", req.body, `for ${req.headers.authorization}`)
     await ThreadPost.create({
-      title: "No Title",
-      body: req.body.message,
-      threadId: req.body.threadId,
-      accountId: userPostingId,
+      title,
+      body,
+      threadId,
+      accountId,
       date: Date.now()
     })
     res.status(200).send()
