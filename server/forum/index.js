@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize')
 const router = require('express').Router()
 const { isRegisteredUser } = require('./gateKeepers')
 
@@ -12,11 +13,32 @@ router.get('/categories', isRegisteredUser, async (req, res, next) => {
   try {
     const categories = await Category.findAll({
       attributes: ['id', 'name'],
-      include: {
-        model: Section,
-        as: 'sections'
-      }
+      include: [
+        {
+          model: Section,
+          as: 'sections',
+          // attributes: {
+          //   include: [[Sequelize.fn('COUNT', Sequelize.col('sections->threads')), 'threadCount']]
+          // },
+          include: [
+            {
+              model: Thread,
+              as: 'threads',
+              attributes: ['sectionId'],
+              include: [
+                {
+                  model: ThreadPost,
+                  as: 'threadposts',
+                  attributes: ['threadId']
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      group: ['category.id', 'sections.id', 'sections->threads.id', 'sections->threads->threadposts.id']
     })
+    //console.log("Categories FOUND", categories[1])
     res.send(categories)
   } catch (error) {
     console.log(error)

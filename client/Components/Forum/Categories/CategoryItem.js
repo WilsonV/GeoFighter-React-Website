@@ -3,6 +3,7 @@ import { FORUM_PAGE, useNavigationList, useNavigationPageUpdate, useNavigationUp
 
 const CategoryItem = ({ categoryItemInfo }) => {
 
+  console.log("Cat INFO:", categoryItemInfo)
   const navigationList = useNavigationList()
   const updateNavList = useNavigationUpdate()
   const changeForumPage = useNavigationPageUpdate()
@@ -23,14 +24,11 @@ const CategoryItem = ({ categoryItemInfo }) => {
     </div>
     <div className="details">
       <div>Threads</div>
-      3
+      {categoryItemInfo.threads.length}
     </div>
     <div className="details">
       <div>Post</div>
-      5
-    </div>
-    <div className="last-post">
-      by: kenken
+      {categoryItemInfo.threads.reduce((k, i) => k + i.threadposts.length, 0)}
     </div>
   </div>)
 }
