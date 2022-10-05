@@ -152,10 +152,9 @@ body {
   }
 }
 
-button{
+button:not(:disable){
   transition: transform .25s ease;
   &:active{
-
     transform: translateY(5px);
   }
 }

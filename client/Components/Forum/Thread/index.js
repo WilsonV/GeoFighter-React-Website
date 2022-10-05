@@ -56,7 +56,9 @@ const Thread = ({ loadThreadPosts, thread, threadId, threadPosts, cleanThreads }
             .filter((post, index) => index < (page * 10) && index >= (page - 1) * 10)
             .map(post => <ThreadPost key={post.id} postInfo={post} />)}
         </div>
-        <Reply threadId={threadId} />
+        {thread.openStatus ?
+          <Reply threadId={threadId} /> :
+          <button disabled className="lock-button">LOCKED</button>}
       </>}
     </div>)
 }
