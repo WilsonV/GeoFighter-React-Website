@@ -3,8 +3,10 @@ import axios from "axios"
 export const TOKEN = 'geofightertoken'
 
 const SET_AUTH = 'SET_AUTH'
+const SET_ADMIN = 'SET_ADMIN'
 
 const setAuth = auth => ({ type: SET_AUTH, auth })
+const setAdmin = admin => ({ type: SET_ADMIN, admin })
 
 export const me = () => async dispatch => {
   const token = window.localStorage.getItem(TOKEN)
@@ -49,6 +51,8 @@ export default function (state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
       return action.auth
+    case SET_ADMIN:
+      return { ...state, admin: action.admin }
     default:
       return state
   }
