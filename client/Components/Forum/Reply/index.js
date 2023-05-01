@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { getThreadPosts, postReply } from "../../../store/forum";
 import TextAreaUtil from "../TextAreaUtil";
 
-const Reply = ({ threadId, addReply }) => {
+const Reply = ({ threadId, addReply, TheUsersName }) => {
 
-  const [replyMessage, setReplyMessage] = useState({ title: '', message: '' })
+  const [loading, setLoading] = useState(true)
+  const [replyMessage, setReplyMessage] = useState({ title: `Reply from ${TheUsersName}`, message: '' })
+
+  useEffect(() => {
+    setLoading(false)
+  }, [])
 
   function handleTextChange(evt) {
     setReplyMessage({ ...replyMessage, [evt.target.name]: evt.target.value })
@@ -15,21 +20,31 @@ const Reply = ({ threadId, addReply }) => {
     setReplyMessage({ ...replyMessage, message })
   }
 
-  function replyToThread(evt) {
+  async function replyToThread(evt) {
+    setLoading(true)
     evt.preventDefault()
-    addReply(threadId, replyMessage)
-    setReplyMessage({ title: '', message: '' })
+    await addReply(threadId, replyMessage)
+    setReplyMessage({ title: `Reply from ${TheUsersName}`, message: '' })
+    setLoading(false)
   }
 
-  return (<form className="reply-area" onSubmit={replyToThread}>
-    <input required className="title" placeholder={"Title..."} onChange={(e) => handleTextChange(e)} name='title' value={replyMessage.title} />
+  return (
+    loading ? <div>Loading...</div> :
+      <form className="reply-area" onSubmit={replyToThread}>
+        <input required className="title" pladceholder={"Title..."} onChange={(e) => handleTextChange(e)} name='title' value={replyMessage.title} />
 
-    <TextAreaUtil textAreaId={"#reply-textarea"} updateReplyMessage={updateReplyMessage} />
+        <TextAreaUtil textAreaId={"#reply-textarea"} updateReplyMessage={updateReplyMessage} />
 
-    <textarea id="#reply-textarea" required rows={10} placeholder={"Reply goes here"} value={replyMessage.message} onChange={handleTextChange} name='message' />
+        <textarea id="#reply-textarea" required rows={10} placeholder={"Reply goes here"} value={replyMessage.message} onChange={handleTextChange} name='message' />
 
-    <button type="submit" className="post-button" >Post Reply</button>
-  </form>)
+        <button type="submit" className="post-button" >Post Reply</button>
+      </form>)
+}
+
+const mapState = (state) => {
+  return {
+    TheUsersName: state.auth.username || 'Unknown'
+  }
 }
 
 const mapDispatch = (dispatch) => {
@@ -40,4 +55,4 @@ const mapDispatch = (dispatch) => {
     }
   }
 }
-export default connect(null, mapDispatch)(Reply)
+export default connect(mapState, mapDispatch)(Reply)

@@ -33,6 +33,9 @@ const TextAreaUtil = ({ textAreaId, updateReplyMessage }) => {
   function imageSelection() {
     addTagBetweenSelection('[IMG]', '[/IMG]')
   }
+  function urlSelection() {
+    addTagBetweenSelection('[URL]', '[/URL]')
+  }
 
   return (
     <div className="util-bar">
@@ -40,6 +43,7 @@ const TextAreaUtil = ({ textAreaId, updateReplyMessage }) => {
       <button type="button" onClick={italicSelection}><i>I</i></button>
       <button type="button" onClick={underlineSelection}><u>U</u></button>
       <button type="button" onClick={strikethroughSelection}><s>S</s></button>
+      <button type="button" onClick={urlSelection}><img src="./url.png" /></button>
       <button type="button" onClick={imageSelection}><img src="./image.png" /></button>
 
     </div>

@@ -22,6 +22,7 @@ export const getForumCategories = () => async dispatch => {
     })
     dispatch(setCategories(res.data))
   } catch (error) {
+    console.log(error)
     console.log('Failed to load forum categories')
     dispatch(setCategories([]))
   }

@@ -1,25 +1,25 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-.forum{
- text-align: center;
- overflow: hidden;
- transition: max-height 2s ease;
- max-height: 4000px;
+.forum {
+  text-align: center;
+  overflow: hidden;
+  transition: max-height 2s ease;
+  max-height: 4000px;
 }
 
-.collapsed{
+.collapsed {
   max-height: 30px;
 }
 
-.forum-navbar-top{
+.forum-navbar-top {
   height: 1px;
   transform: translateY(50px);
 }
 
-.forum-navbar{
+.forum-navbar {
   margin: auto;
   margin-top: 5vh;
   margin-bottom: 1vh;
@@ -31,19 +31,21 @@
   top: 0;
   display: flex;
   align-items: center;
-  img{
+
+  img {
     border: 2px black solid;
     height: 50%;
     margin: 2px;
   }
-  a{
+
+  a {
     text-decoration: none;
     color: white;
     margin: 2px;
     text-transform: uppercase;
     animation: SlideFadeIn 2s;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
@@ -53,9 +55,11 @@
       opacity: 0;
       transform: translateX(-100%);
     }
+
     50% {
       transform: translateX(0%);
     }
+
     100% {
       opacity: 1;
 
@@ -64,7 +68,7 @@
 
 }
 
-.full-width{
+.full-width {
   position: sticky;
   width: 100%;
   border-bottom: 2px white solid;
@@ -83,7 +87,7 @@
   max-height: 1000px;
   overflow: hidden;
 
-  .top{
+  .top {
     background-color: cadetblue;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -99,7 +103,7 @@
 
   }
 
-  .expand{
+  .expand {
     width: 30px;
     height: 100%;
     border: none;
@@ -107,12 +111,12 @@
     color: cadetblue;
     border-top-right-radius: 20px;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
 
-  .content{
+  .content {
     background-color: white;
     border: 4px solid black;
     min-height: 100px;
@@ -121,7 +125,7 @@
 }
 
 
-.category-collapsed{
+.category-collapsed {
   max-height: 4vh;
 }
 
@@ -137,7 +141,7 @@
     padding: 5px;
   }
 
-  .title{
+  .title {
     width: 60%;
 
     text-align: left;
@@ -145,22 +149,23 @@
     font-weight: bold;
     font-size: small;
 
-    a{
+    a {
       color: black;
       text-decoration: none;
-      &:hover{
-      color: red;
-      cursor: pointer;
+
+      &:hover {
+        color: red;
+        cursor: pointer;
       }
     }
 
-    .description{
+    .description {
       color: gray;
     }
 
   }
 
-  .details{
+  .details {
     width: 10%;
     border-right: 1px solid gray;
     font-size: smaller;
@@ -171,18 +176,18 @@
 
   }
 
-  .last-post{
+  .last-post {
     width: 30%;
   }
 }
 
-.section-header{
-    text-align: right;
-    width: 80vw;
-    margin: auto;
-    padding: 10px 0;
+.section-header {
+  text-align: right;
+  width: 80vw;
+  margin: auto;
+  padding: 10px 0;
 
-  .title{
+  .title {
     text-align: left;
     text-transform: uppercase;
     width: 100%;
@@ -191,24 +196,24 @@
     flex-direction: row;
     flex-flow: row wrap;
 
-    .pageButtons{
-    background-color: blue;
-    margin-left: 10px;
-    width: 15px;
-    height: 20px;
-    background-color: lightgray;
-    color:white;
-    border: 1px black solid;
-    font-size: large;
-    text-align: center;
+    .pageButtons {
+      background-color: blue;
+      margin-left: 10px;
+      width: 15px;
+      height: 20px;
+      background-color: lightgray;
+      color: white;
+      border: 1px black solid;
+      font-size: large;
+      text-align: center;
 
-      &:hover{
+      &:hover {
         cursor: pointer;
       }
     }
   }
 
-  .topic-button{
+  .topic-button {
     width: 120px;
     height: 40px;
     margin: 0 10px;
@@ -217,19 +222,19 @@
     text-transform: uppercase;
     border: none;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
 }
 
-.forum-section{
+.forum-section {
   width: 80vw;
   background-color: cadetblue;
   min-width: 100px;
   margin: auto;
 
-  .section-item{
+  .section-item {
     display: flex;
     flex-direction: row;
     background-color: rgb(206, 250, 250);
@@ -247,38 +252,39 @@
 
     }
 
-    .title{
+    .title {
       text-align: left;
       width: 60%;
       height: 5vh;
 
-      .date{
+      .date {
         color: gray;
       }
     }
 
-    a{
+    a {
       color: black;
       text-decoration: none;
-      &:hover{
-      color: red;
-      cursor: pointer;
+
+      &:hover {
+        color: red;
+        cursor: pointer;
       }
     }
 
-    .details{
+    .details {
       width: 30%;
       height: 5vh;
       border-left: 1px solid gray;
       border-right: 1px solid gray;
     }
 
-    .small-details{
+    .small-details {
       width: 5%;
       height: 5vh;
       border-right: 1px solid gray;
 
-      &:last-child{
+      &:last-child {
         border-right: none;
       }
     }
@@ -288,11 +294,11 @@
 
 
 
-  $lightGray: #fafafa;
-  $medBlue: #9baecf;
-  $char: #292929;
+$lightGray: #fafafa;
+$medBlue: #9baecf;
+$char: #292929;
 
-.forum-post{
+.forum-post {
   width: 80vw;
   min-height: 200px;
   background-color: white;
@@ -301,7 +307,7 @@
   display: flex;
   flex-wrap: wrap;
 
-  .title{
+  .title {
     min-width: 100%;
     text-align: left;
     text-transform: uppercase;
@@ -312,7 +318,7 @@
   }
 
 
-  .author{
+  .author {
     width: 10%;
     height: 100%;
     min-height: 150px;
@@ -320,14 +326,14 @@
     text-transform: uppercase;
     margin: 0;
 
-    img{
+    img {
       height: 100px;
       height: 100px;
     }
   }
 
 
-  .body{
+  .body {
     width: 90%;
     min-height: 150px;
     background-color: white;
@@ -354,20 +360,22 @@
         content: attr('scss');
         background: $medBlue;
       }
+
       .o {
         color: orange;
       }
+
       .w {
         color: white;
       }
     }
 
-    img{
+    img {
       max-height: 25%;
       max-width: 100%;
       transition: transform 0.5s ease;
 
-      &:hover{
+      &:hover {
         max-height: 100%;
         transform: scale(1.5);
         border: 4px black solid;
@@ -376,7 +384,7 @@
   }
 }
 
-.lock-button{
+.lock-button {
   width: 50%;
   height: 40px;
   margin: 5px 10px;
@@ -388,36 +396,36 @@
 
 }
 
-.reply-area{
+.reply-area {
   margin: auto;
   padding-top: 20px;
   width: 80vw;
 
-  .title{
+  .title {
     width: 100%;
     height: 30px;
     margin: 10px 0;
     font-size: large;
 
-    &:focus{
+    &:focus {
       outline-color: cadetblue;
     }
   }
 
-  textarea{
+  textarea {
     width: 100%;
     resize: vertical;
     font-size: large;
     min-height: 200px;
     padding: 2px;
 
-    &:focus{
+    &:focus {
       outline-color: cadetblue;
     }
   }
 
 
-  .post-button{
+  .post-button {
     width: 50%;
     height: 40px;
     margin: 0 10px;
@@ -426,21 +434,21 @@
     text-transform: uppercase;
     border: none;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
 
   }
 }
 
-.footer{
+.footer {
   width: 100%;
   height: 200px;
   overflow: hidden;
   position: relative;
   bottom: 0;
 
-  .link-bar{
+  .link-bar {
     width: 100%;
     height: 30%;
     background-color: gray;
@@ -456,34 +464,34 @@
 }
 
 
-.new-topic{
+.new-topic {
   width: 80vw;
   margin: auto;
   text-align: center;
 
-  .title{
+  .title {
     width: 100%;
     height: 30px;
     font-size: large;
 
-    &:focus{
+    &:focus {
       outline-color: cadetblue;
     }
   }
 
-  textarea{
+  textarea {
     margin: 10px 0;
     width: 100%;
     min-height: 300px;
     resize: vertical;
     font-size: large;
 
-    &:focus{
+    &:focus {
       outline-color: cadetblue;
     }
   }
 
-  .post-button{
+  .post-button {
     width: 50%;
     height: 40px;
     margin: 0 10px;
@@ -492,7 +500,7 @@
     text-transform: uppercase;
     border: none;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
 
@@ -500,7 +508,7 @@
 }
 
 
-.util-bar{
+.util-bar {
   height: 30px;
   border: 1px gray solid;
   margin: 0 auto;
@@ -508,19 +516,20 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  background-color: gray;
 
 
-  button{
+  button {
     height: 100%;
     width: 40px;
     border: 1px black solid;
     margin: 1px 5px;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
 
-    img{
+    img {
       max-width: 100%;
       max-height: 100%;
     }
